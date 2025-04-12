@@ -1,8 +1,9 @@
 <script>
   import { InputGroup, Input, Button, ListGroup, ListGroupItem, Collapse } from '@sveltestrap/sveltestrap';
-  import { showToast } from '../utils/ToastHelper';
   import Select from 'svelte-select';
-  import { toasts, ToastContainer, FlatToast, BootstrapToast }  from "svelte-toasts";
+  import toastr from 'toastr';
+  import 'toastr/build/toastr.min.css';
+
 
 
   let exercises = []; // Exercise list
@@ -24,9 +25,8 @@
         exercises = [...exercises, { ...currentExercise, id: Date.now() }];
       }
     }
-    showToastX();
-    //showToast('success', 'Exercise saved successfully!');
-    // Reset form
+    toastr.success('Exercise saved successfully!', 'Success',{positionClass: 'toast-bottom-right'});
+
     currentExercise = { exercise: '', description: '', duration: '', intensity: 'low' };
   };
 
@@ -51,22 +51,6 @@
     isFooterExpanded = !isFooterExpanded;
   };
 
-  const showToastX = () => {
-    const toast = toasts.add({
-      //title: 'Message title',
-      description: 'Saved successfully!',
-      duration: 10000, // 0 or negative to avoid auto-remove
-      placement: 'bottom-right',
-      type: 'success',
-      theme: 'light',
-      //onClick: () => {},
-      //onRemove: () => {},
-      // component: BootstrapToast // Removed as it is not a valid property
-    });
-
-    //toast.remove()
-
-  };
 </script>
 
 <div class="container mt-2">
@@ -143,16 +127,16 @@
   </div>
 </div>
 
-<!-- Footer Section -- >
+<!-- Footer Section -->
 <div class="footer border-top mt-5 p-3">
   <div class="d-flex justify-content-between align-items-center">
     <span class="text-secondary">Expandable Footer</span>
     <Button color="link" class="p-0" on:click={toggleFooter}>
       <span class="d-flex align-items-center">
         {#if isFooterExpanded}
-          <i class="bi bi-chevron-down"></i> < !-- Bootstrap chevron down -- >
+          <i class="bi bi-chevron-down"></i> <!-- Bootstrap chevron down -->
         {:else}
-          <i class="bi bi-chevron-right"></i> < !-- Bootstrap chevron right -- >
+          <i class="bi bi-chevron-right"></i> <!-- Bootstrap chevron right -->
         {/if}
       </span>
     </Button>
@@ -164,7 +148,7 @@
       </p>
     </div>
   </Collapse>
-</div> -- >
+</div>
 
 <style>
   .footer {
@@ -178,4 +162,4 @@
   .footer .text-secondary {
     font-weight: 600; /* Bold footer title */
   }
-</style> -->
+</style>
