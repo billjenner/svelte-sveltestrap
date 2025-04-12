@@ -3,7 +3,7 @@
   import ExerciseType from './pages/ExerciseType.svelte';
   import HelloWorld from './pages/HelloWorld.svelte';
   import { Button } from '@sveltestrap/sveltestrap';
-  import { ToastContainer } from 'svelte-toasts';
+  import { ToastContainer, BootstrapToast, FlatToast } from 'svelte-toasts';
 
 
   let activeScreen = 'HelloWorld';
@@ -42,7 +42,9 @@
     <HelloWorld />
   {/if}
 
-  <ToastContainer />
+  <ToastContainer placement="bottom-right" let:data={data}>
+    <FlatToast  {data} /> <!-- Provider template for your toasts -->
+  </ToastContainer>
 </main>
 
 <style>
