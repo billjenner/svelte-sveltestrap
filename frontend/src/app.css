@@ -25,57 +25,93 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
-  color: #198754; /* Bootstrap success color */
+  color: #098036;
 }
-
 
 .card {
   padding: 2em;
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  padding: 0.5rem;
 }
 
-button {
+button,
+.nav-button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
+  min-width: 140px;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #407bb6;
+  color: #fff;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, background-color 0.25s, color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
+
+button:hover,
+.nav-button:hover {
+  border-color: #fff;
+  background-color: #096e22;
 }
+
 button:focus,
-button:focus-visible {
+button:focus-visible,
+.nav-button:focus,
+.nav-button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #26598d;
+  border-bottom: 1px solid #dee2e6;
+  padding: 0.5rem 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-radius: 8px;
+}
+
+.nav-title, .nav-title.s-XsEmFtvddWTw {
+  font-size: 1.5rem !important;
+  font-weight: bold;
+  color: #e9ecef !important;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav-button.active {
+  background-color: #e9ecef;
+  color: #26598d;
+  font-weight: 600;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    color: #f0a45e;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
   }
 }

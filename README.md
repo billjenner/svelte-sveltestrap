@@ -11,6 +11,9 @@ npm install bootstrap-icons
 
 npm install svelte-routing
 
+npm install svelte-toasts
+
+npm install svelte-select
 
 ```
 This template should help get you started developing with Svelte in Vite.

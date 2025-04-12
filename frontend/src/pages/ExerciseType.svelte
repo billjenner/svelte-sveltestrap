@@ -1,8 +1,12 @@
 <script>
   import { InputGroup, Input, Button, ListGroup, ListGroupItem, Collapse } from '@sveltestrap/sveltestrap';
+  import { showToast } from '../utils/ToastHelper';
+  import Select from 'svelte-select';
 
   let exercises = []; // Exercise list
-  let currentExercise = { exercise: '', description: '', duration: '', intensity: 'low' }; // Default input
+  let currentExercise = { exercise: '', description: '', duration: '', intensity: 'low' };
+  const items = [ 'low', 'moderate', 'high', 'HIIT', 'Circuit' ];
+
   let editingExercise = null; // Keeps track of the exercise being edited
 
   const saveExercise = () => {
@@ -18,6 +22,7 @@
         exercises = [...exercises, { ...currentExercise, id: Date.now() }];
       }
     }
+    showToast('success', 'Exercise saved successfully!');
     // Reset form
     currentExercise = { exercise: '', description: '', duration: '', intensity: 'low' };
   };
@@ -42,9 +47,12 @@
   const toggleFooter = () => {
     isFooterExpanded = !isFooterExpanded;
   };
+
+  showToast('success', 'Exercise saved successfully!XXX');
+  console.log('in startup')
 </script>
 
-<div class="container mt-5">
+<div class="container mt-2">
   <h2 class="text-center text-primary">Manage Exercises</h2>
 
   <!-- Add/Edit Exercise Form -->
@@ -71,13 +79,9 @@
         class="form-control"
       />
     </InputGroup>
-    <InputGroup class="mb-3">
-      <Input
-        placeholder="Intensity (e.g., low, moderate, high, HIIT, Circuit)"
-        bind:value={currentExercise.intensity}
-        class="form-control"
-      />
-    </InputGroup>
+    <div class="mb-3">
+      <Select {items} inputStyles="box-sizing: border-box;"></Select>
+    </div>
     <div class="d-flex gap-2">
       <Button color="primary" on:click={saveExercise}>
         {editingExercise ? 'Save Changes' : 'Add Exercise'}
@@ -121,7 +125,6 @@
     </ListGroup>
   </div>
 </div>
-
 
 <!-- Footer Section -->
 <div class="footer border-top mt-5 p-3">
